@@ -6,6 +6,7 @@ function Profil() {
     <div>
       <Container>
         <Row>Ini untuk Profil</Row>
+        <Row>Ini untuk Profil Row</Row>
       </Container>
     </div>
   );
