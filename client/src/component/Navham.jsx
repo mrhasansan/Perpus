@@ -25,9 +25,7 @@ function Navham(props) {
   return (
     <>
       <Navbar color="faded" light className=" mx-3 mb-0" style={{ background: "#001C3D" }}>
-        <NavbarBrand href="/" className="me-auto">
-          <img src={library} style={{ height: 70, width: 70 }} />
-        </NavbarBrand>
+        <img src={library} style={{ height: 70, width: 70 }} />
         {props.loading ? (
           <Spinner />
         ) : username && !props.loading ? (
@@ -87,41 +85,41 @@ function Navham(props) {
             </Collapse>
           </>
         )}
-        <Container className="d-flex justify-content-center align-items-center py-2 mx-3 mb-0" style={{ background: "#001F47" }}>
-          <ul className={" d-flex list-unstyled "}>
-            <li className="py-0 px-3">
-              <Link to="/" style={{ color: "#FFFFFF" }}>
-                BERANDA
-              </Link>
-            </li>
-            <li className="py-0  px-3">
-              <Link to="/" style={{ color: "#FFFFFF" }}>
-                TUTORIAL
-              </Link>
-            </li>
-            <li className="py-0  px-3">
-              <Link to="/product" style={{ color: "#FFFFFF" }}>
-                KATALOG
-              </Link>
-            </li>
-            <li className="py-0  px-3">
-              <Link to="/" style={{ color: "#FFFFFF" }}>
-                JURNAL
-              </Link>
-            </li>
-            <li className="py-0  p-3">
-              <Link to="/" style={{ color: "#FFFFFF" }}>
-                LAYANAN
-              </Link>
-            </li>
-            <li className="py-0  pe-3">
-              <Link to="/" style={{ color: "#FFFFFF" }}>
-                KONTAK
-              </Link>
-            </li>
-          </ul>
-        </Container>
       </Navbar>
+      <Link className="d-flex justify-content-center align-items-center py-2 mx-3 mb-0" style={{ background: "#001F47" }}>
+        <ul className={" d-flex list-unstyled "}>
+          <li className="py-0 px-3">
+            <Link to="/" style={{ color: "#FFFFFF" }}>
+              BERANDA
+            </Link>
+          </li>
+          <li className="py-0  px-3">
+            <Link to="/" style={{ color: "#FFFFFF" }}>
+              TUTORIAL
+            </Link>
+          </li>
+          <li className="py-0  px-3">
+            <Link to="/product" style={{ color: "#FFFFFF" }}>
+              KATALOG
+            </Link>
+          </li>
+          <li className="py-0  px-3">
+            <Link to="/" style={{ color: "#FFFFFF" }}>
+              JURNAL
+            </Link>
+          </li>
+          <li className="py-0  p-3">
+            <Link to="/" style={{ color: "#FFFFFF" }}>
+              LAYANAN
+            </Link>
+          </li>
+          <li className="py-0  pe-3">
+            <Link to="/" style={{ color: "#FFFFFF" }}>
+              KONTAK
+            </Link>
+          </li>
+        </ul>
+      </Link>
     </>
   );
 }

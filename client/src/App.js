@@ -15,6 +15,8 @@ import Landing from "./pages/Landing";
 import Navham from "./component/Navham";
 import Product from "./pages/Product";
 import RegisProduct from "./pages/RegisProduct";
+import Detail from "./pages/Detail";
+import VerificationPage from "./pages/Verification";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -50,11 +52,21 @@ function App() {
       <Navham />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/user" element={<Dashboard />} />
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute>
+              {" "}
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/product" element={<Product />} />
         <Route path="/registerproduct" element={<RegisProduct />} />
+        <Route path="/detail" element={<Detail />} />
+        <Route path="/verification" element={<VerificationPage />} />
         <Route
           path="/profil"
           element={

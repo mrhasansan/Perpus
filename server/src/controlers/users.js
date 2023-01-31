@@ -4,6 +4,7 @@ const { hashPasword, createToken } = require("../config/encript");
 const bcrypt = require("bcrypt");
 const { dbSequelize } = require("../config/db");
 const { where } = require("sequelize");
+const { transport } = require("../config/nodemailer");
 
 module.exports = {
   getData: async (req, res) => {
@@ -63,6 +64,7 @@ module.exports = {
         });
       } else {
         try {
+          let data = await UsersModel.findAll();
           let create = await UsersModel.create({
             username,
             email,
@@ -71,11 +73,31 @@ module.exports = {
             address,
             password: newPass,
           });
-          return res.status(200).send({
-            success: true,
-            message: "Register account succest",
-            data: create,
-          });
+          let token = createToken({ id: data.length + 1, username, email });
+
+          // Mengirimkan email
+          transport.sendMail(
+            {
+              from: "Library Admin",
+              to: email,
+              subject: "Verification email account",
+              html: `<div>
+              <h3> Click link below for verification your email</h3>
+              <a href="http://localhost:3000/verification?t=${token}"> Verifie Now</a>
+            </div>`,
+            },
+            (err, info) => {
+              if (err) {
+                return res.status(400).send(err);
+              }
+              return res.status(200).send({
+                success: true,
+                message: "Register account succest, chek your email",
+                info,
+                data: create,
+              });
+            }
+          );
         } catch (error) {
           console.log(error);
         }
@@ -120,14 +142,15 @@ module.exports = {
   },
   verifiedAccount: async (req, res) => {
     try {
-      console.log(req.decript);
+      console.log("verif dec", req.decript);
+
       let update = await UsersModel.update(
         {
           status: "verified",
         },
         {
           where: {
-            id: id.decript.id,
+            id: req.decript.id,
           },
         }
       );
