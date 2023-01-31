@@ -48,6 +48,11 @@ function Navham(props) {
                       Transactions Management
                     </NavLink>
                   </MenuItem>
+                  <MenuItem>
+                    <NavLink style={{ color: "black" }} onClick={() => navigate(`/profile`)}>
+                      Profil
+                    </NavLink>
+                  </MenuItem>
                 </div>
               ) : (
                 <div>
@@ -57,7 +62,7 @@ function Navham(props) {
                     </NavLink>
                   </MenuItem>
                   <MenuItem>
-                    <NavLink href="/user" style={{ color: "black" }}>
+                    <NavLink style={{ color: "black" }} onClick={() => navigate(`/profile`)}>
                       Profil
                     </NavLink>
                   </MenuItem>

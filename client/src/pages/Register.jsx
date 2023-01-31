@@ -18,7 +18,6 @@ function Register() {
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPasword] = useState("");
-  const [lastId, setLastId] = useState("");
 
   const onBtnRegis = () => {
     Axios.post(API_URL + `/users/register`, {
@@ -36,6 +35,7 @@ function Register() {
       .catch((err) => {
         console.log(err);
       });
+    Axios.get(API_URL + `/users`, {});
   };
   return (
     <Container className="m-3">

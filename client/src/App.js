@@ -68,7 +68,7 @@ function App() {
         <Route path="/detail" element={<Detail />} />
         <Route path="/verification" element={<VerificationPage />} />
         <Route
-          path="/profil"
+          path="/profile"
           element={
             <ProtectedRoute exact path="/">
               <Profil />

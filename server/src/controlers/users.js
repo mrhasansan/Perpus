@@ -127,13 +127,18 @@ module.exports = {
   },
   profileImg: async (req, res) => {
     console.log(req.files);
-
     try {
-      let data = await UsersModel.findAll({
-        where: {
-          id: 4,
+      let updateprofil = await UsersModel.update(
+        {
+          foto: `/imgProfile/${req.files[0].filename}`,
         },
-      });
+        {
+          where: {
+            id: req.decript.id,
+          },
+        }
+      );
+      console.log("cek update profil", updateprofil);
       res.status(200).json({ msg: "Profile update berhasil" });
     } catch (error) {
       console.log(error);
