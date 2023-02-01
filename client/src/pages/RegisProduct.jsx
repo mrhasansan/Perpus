@@ -9,7 +9,7 @@ function RegisProduct() {
   const [penerbit, setPenerbit] = useState("");
   const [pengarang, setPengarang] = useState("");
   const [tahunterbit, setTahunTerbit] = useState("");
-  const [kategory, setKategory] = useState("");
+  const [kategori, setKategory] = useState("");
   const [lokasi, setLokasi] = useState("");
   const [jumlah, setJumlah] = useState("");
   const [foto, setFoto] = useState("");
@@ -21,7 +21,7 @@ function RegisProduct() {
       penerbit,
       pengarang,
       tahunterbit,
-      kategory,
+      kategori,
       lokasi,
       jumlah,
       foto,
@@ -29,7 +29,7 @@ function RegisProduct() {
     })
       .then((res) => {
         console.log(res.data);
-        alert("Registrasi produk berhasul");
+        alert("Registrasi produk berhasil");
       })
       .catch((err) => {
         console.log(err);
@@ -57,20 +57,19 @@ function RegisProduct() {
         <Col md={6}>
           <Label>Kategori</Label>
           <Input id="exampleSelect" name="select" type="select" md={4} onChange={(e) => setKategory(e.target.value)}>
-            <option>Umum</option>
-            <option>Science </option>
-            <option>Techlonolgy</option>
-            <option>Social</option>
+            <option value="Umum">Umum</option>
+            <option value="Science"> Science </option>
+            <option value="Technolgy">Techlonolgy</option>
+            <option value="Social">Social</option>
           </Input>
         </Col>
         <Col md={6}>
           <Label>Lokasi</Label>
           <Input id="exampleSelect" name="select" type="select" md={4} onChange={(e) => setLokasi(e.target.value)}>
-            <option>Rak A</option>
-            <option>Rak B</option>
-            <option>Rak C</option>
-            <option>Rak D</option>
-            <option>Semua Rak</option>
+            <option value="Rak A">Rak A</option>
+            <option value="Rak B">Rak B</option>
+            <option value="Rak C">Rak C</option>
+            <option value="Rak B">Rak D</option>
           </Input>
         </Col>
         <Col md={6}>

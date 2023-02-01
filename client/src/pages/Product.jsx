@@ -22,7 +22,7 @@ function Product(props) {
   const [listData, setListData] = useState([]);
   const loadListData = async () => {
     const response = await Axios.get(API_URL + `/products`);
-    setListData(response.data);
+    setListData(response.datalist);
   };
 
   useEffect(() => {

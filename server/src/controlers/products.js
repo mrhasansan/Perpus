@@ -1,19 +1,38 @@
 const ProductsModel = require("../model/products");
 const sequelize = require("sequelize");
+const UsersModel = require("../model/users");
 
 module.exports = {
   getData: async (req, res) => {
     try {
-      let data = await ProductsModel.findAll();
+      // pagination
+      const pageAsNumber = Number.parseInt(req.query.page);
+      const sizeAsNumber = Number.parseInt(req.query.size);
+      let page = 0;
+      if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+        page = pageAsNumber;
+      }
+      let size = 5;
+      if (!Number.isNaN(sizeAsNumber) && sizeAsNumber > 0 && sizeAsNumber < 5) {
+        size = sizeAsNumber;
+      }
+      let datalist = await ProductsModel.findAndCountAll({
+        limit: size, // batas max dalam tiap page
+        offset: page * size, // yang akan ditampilkan pertama dalam page
+      });
 
-      return res.status(200).send(data);
+      return res.status(200).send({
+        //pagination
+        content: datalist.rows,
+        totalPages: Math.ceil(datalist.count / size),
+      });
     } catch (err) {
       console.log(err);
       return res.status(500).send(err);
     }
   },
   register: async (req, res) => {
-    let { judul, lokasi, penerbit, pengarang, sinopsis, kategory, tahunterbit, jumlah } = req.body;
+    let { judul, lokasi, penerbit, pengarang, sinopsis, kategori, tahunterbit, jumlah } = req.body;
     try {
       let data = await ProductsModel.findAll({
         where: {
@@ -33,7 +52,7 @@ module.exports = {
             penerbit,
             pengarang,
             sinopsis,
-            kategory,
+            kategori,
             tahunterbit,
             jumlah,
           });
